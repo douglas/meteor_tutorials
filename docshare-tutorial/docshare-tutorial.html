@@ -3,34 +3,40 @@
 </head>
 
 <body>
-{{> documentList}}
-<hr>
-{{> documentView}}
+    {{> documentList}}
+    <hr>
+    {{> documentView}}
 </body>
 
-
 <template name="documentList">
-    <h1>Welcome to document sharing</h1>
+    <h1>Bem-vindo ao compartilhamento de arquivos !</h1>
     <div>
         {{#each documents}}
-            {{> document}}
+        {{> document}}
         {{/each}}
     </div>
-
     <div id="createDocument">
-        Name: <input type="text" id="new-document-name" placeholder="New document" />
-        <input type="button" id="new-document" value="create">
+        Nome: <input type="text" id="new-document-name" placeholder="Novo documento" /><input type="button" id="new-document" value="criar !"/>
     </div>
 </template>
 
+<template name="document">
+    <div class="document {{selected}}">
+    <p>
+        {{ name }}
+        <input type="button" id="edit-document" value="Editar"/>
+        <input type="button" id="delete-document" value="Excluir"/>
+    </p>
+   </div>
+</template>
 
 <template name="documentView">
     {{#if selectedDocument}}
     {{#with selectedDocument}}
-        <div>
-            <p>{{name}}</p>
-            <textarea id="document-text" rows="10" cols="80">{{text}}</textarea>
-        </div>
+    <div>
+        <p>{{ name }}</p>
+        <textarea id="document-text" rows="10" cols="80">{{ text }}</textarea>
+    </div>
     {{/with}}
     {{/if}}
 </template>
